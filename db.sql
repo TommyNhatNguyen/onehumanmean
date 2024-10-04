@@ -8,14 +8,14 @@ position TEXT NOT NULL DEFAULT 'all',
 category TEXT NOT NULL DEFAULT 'others',
 author TEXT NOT NULL DEFAULT 'anonymous',
 thumbnail_url TEXT,
-hidden BOOLEAN NOT NULL DEFAULT false)
+hidden BOOLEAN NOT NULL DEFAULT false);
 
 
 CREATE TABLE IF NOT EXISTS auth (
 id SERIAL NOT NULL UNIQUE PRIMARY KEY,
 username TEXT NOT NULL, 
 password_hash TEXT NOT NULL
-refresh_token TEXT UNIQUE DEFAULT NULL)
+refresh_token TEXT UNIQUE DEFAULT NULL);
 
 
 CREATE TABLE IF NOT EXISTS notify (
@@ -25,7 +25,7 @@ email TEXT NOT NULL,
 question TEXT
 is_answer BOOLEAN DEFAULT false
 answer TEXT DEFAULT NULL
-answered_at TIMESTAMP DEFAULT NULL)
+answered_at TIMESTAMP DEFAULT NULL);
 
 CREATE TABLE IF NOT EXISTS projects (
 id SERIAL NOT NULL UNIQUE PRIMARY KEY,
@@ -37,6 +37,6 @@ position TEXT NOT NULL DEFAULT 'default',
 category TEXT NOT NULL DEFAULT 'others',
 author TEXT NOT NULL DEFAULT 'anonymous',
 thumbnail_url TEXT,
-hidden BOOLEAN NOT NULL DEFAULT false)
+hidden BOOLEAN NOT NULL DEFAULT false);
 
-INSERT INTO auth(username, password_hash) VALUES ("admin@gmail.com", "nhatvai123")
+INSERT INTO auth(username, password_hash) VALUES ("admin@gmail.com", "nhatvai123");
