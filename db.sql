@@ -39,4 +39,4 @@ author TEXT NOT NULL DEFAULT 'anonymous',
 thumbnail_url TEXT,
 hidden BOOLEAN NOT NULL DEFAULT false);
 
-INSERT INTO auth(username, password_hash) VALUES ("admin@gmail.com", "nhatvai123");
+INSERT INTO auth(username, password_hash) VALUES ('admin@gmail.com', 'nhatvai123');
