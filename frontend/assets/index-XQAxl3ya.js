@@ -1,0 +1,1 @@
+import{j as a}from"./index-DR8RArQ-.js";import{t as s}from"./bundle-mjs-BOZU2X2x.js";const p=({children:t,type:r="button",tailClasses:o,...e})=>a.jsx("button",{className:s("h-[32px] rounded-[24px] bg-[rgba(2,106,162,0.8)] px-[16px] font-regular text-tag capitalize text-white duration-300 hover:bg-sky-200",o),type:r,...e,children:t});export{p as B};
