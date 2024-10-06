@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
+const compression = require("compression");
+const RateLimit = require("express-rate-limit");
 const path = require("path");
 const bodyParser = require("body-parser");
 const blogRouter = require("./routers/blogApis");
@@ -25,6 +27,12 @@ const upload = multer({ storage: storage });
 const app = express();
 const PORT = process.env.PORT;
 // Middleware
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 20,
+});
+app.use(limiter);
+app.use(compression());
 app.use(cors());
 app.use(morgan("combined"));
 app.use("/public", express.static(path.join(__dirname, "../public")));
