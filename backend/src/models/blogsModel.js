@@ -31,6 +31,10 @@ Blogs.updateById = (id, payload) => {
   const values = Object.values(payload);
   const updatePayload = [];
   columns.forEach((col, index) => {
+    if (typeof values[index] === "string") {
+      updatePayload.push(`${col} = '${values[index].replace(/'/g, "''")}'`);
+      return;
+    }
     updatePayload.push(`${col} = '${values[index]}'`);
   });
   const queryPromise = db.one(

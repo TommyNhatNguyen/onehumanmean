@@ -1,1 +1,0 @@
-import{r as s,b as r,t as e,bp as a,g as i,h as c,bq as l,j as o,O as x}from"./index-DR8RArQ-.js";const n=s.createContext({}),p=()=>{const t=r();return s.useEffect(()=>{e.get()&&(t(a()),t(i()),t(c()),t(l()))},[e.get()]),console.log(e.get()),o.jsx(n.Provider,{value:{},children:o.jsx(x,{})})},d=()=>s.useContext(n);export{p as AdminContextProvider,d as useAdminContext};

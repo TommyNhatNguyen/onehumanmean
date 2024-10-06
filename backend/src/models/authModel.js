@@ -8,7 +8,7 @@ Auth.getUserName = (username) => {
 };
 Auth.getUser = (refreshToken) => {
   return db.oneOrNone(
-    `SELECT * FROM auth WHERE username LIKE '${refreshToken}'`
+    `SELECT * FROM auth WHERE refresh_token LIKE '${refreshToken}'`
   );
 };
 // Save refresh token

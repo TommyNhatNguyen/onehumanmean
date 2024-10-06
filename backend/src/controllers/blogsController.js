@@ -31,9 +31,12 @@ async function getAllBlogs(req, res) {
     /** Start: Filter by category */
     if (category && typeof category === "string") {
       const categoryList = category.split(",");
-      results = results.filter((item) =>
-        categoryList.includes(...item.category.split(","))
-      );
+      results = results.filter((item) => {
+        return item.category
+          .toLowerCase()
+          .split(",")
+          .some((element) => categoryList.includes(element));
+      });
     }
     /** ---End--- */
 
@@ -127,7 +130,7 @@ async function createBlog(req, res) {
     } else {
       res.status(400).json({
         message: "Create new post fail",
-        success: fail,
+        success: false,
         data: null,
       });
     }
@@ -160,6 +163,7 @@ async function updateBlog(req, res) {
         .json({ message: "Update blog successful", success: true, data: data });
     }
   } catch (error) {
+    console.log(error);
     res
       .status(400)
       .json({ message: error.message, success: false, data: null });

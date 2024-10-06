@@ -10,6 +10,7 @@ const authRouter = require("./routers/authApis");
 const authValidation = require("./middlewares/authValidation");
 const notiRouter = require("./routers/notiApis");
 const projectRouter = require("./routers/projectsApis");
+const { roleValidation } = require("./middlewares/roleValidation");
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, "tempUploads");
@@ -39,6 +40,7 @@ app.use(projectRouter);
 app.post(
   "/admin/uploads",
   authValidation,
+  roleValidation,
   upload.single("file"),
   (req, res) => {
     const fullUrl = req.protocol + "://" + req.get("host") + "/tempUploads";
@@ -48,6 +50,7 @@ app.post(
 app.post(
   "/admin/uploads/ckeditor",
   authValidation,
+  roleValidation,
   upload.any(),
   (req, res) => {
     const fullUrl = req.protocol + "://" + req.get("host") + "/tempUploads";

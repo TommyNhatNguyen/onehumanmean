@@ -31,9 +31,12 @@ async function getAllProjects(req, res) {
     /** Start: Filter by category */
     if (category && typeof category === "string") {
       const categoryList = category.split(",");
-      results = results.filter((item) =>
-        categoryList.includes(...item.category.split(","))
-      );
+      results = results.filter((item) => {
+        return item.category
+          .toLowerCase()
+          .split(",")
+          .some((element) => categoryList.includes(element));
+      });
     }
     /** ---End--- */
 
@@ -155,13 +158,11 @@ async function updateProject(req, res) {
   try {
     const data = await Projects.updateById(projectId, payload);
     if (data) {
-      res
-        .status(200)
-        .json({
-          message: "Update project successful",
-          success: true,
-          data: data,
-        });
+      res.status(200).json({
+        message: "Update project successful",
+        success: true,
+        data: data,
+      });
     }
   } catch (error) {
     res

@@ -7,6 +7,7 @@ const {
   createNewNotification,
 } = require("../controllers/notiController");
 const authValidation = require("../middlewares/authValidation");
+const { roleValidation } = require("../middlewares/roleValidation");
 const notiRouter = express.Router();
 
 notiRouter.get("/admin/notifications", authValidation, getAllNotifications);
@@ -16,10 +17,16 @@ notiRouter.get(
   getNotificationById
 );
 notiRouter.post("/admin/notifications", createNewNotification);
-notiRouter.put("/admin/notifications", authValidation, updateNotification);
+notiRouter.put(
+  "/admin/notifications",
+  authValidation,
+  roleValidation,
+  updateNotification
+);
 notiRouter.delete(
   "/admin/notifications/:questionId",
   authValidation,
+  roleValidation,
   deleteNotification
 );
 

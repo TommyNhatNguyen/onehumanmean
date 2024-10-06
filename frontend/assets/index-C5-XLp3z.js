@@ -1,1 +1,0 @@
-import{u as s,a as o,r,t,P as n,j as i,O as u}from"./index-DR8RArQ-.js";const f=()=>{const a=s(),{pathname:e}=o();return r.useEffect(()=>{t.get()||a(n.ADMIN.LOGIN)},[JSON.stringify(t.get()),e]),i.jsx(u,{})};export{f as default};
