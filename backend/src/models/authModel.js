@@ -46,8 +46,9 @@ function createTable() {
   db.query(`CREATE TABLE IF NOT EXISTS auth (
         id SERIAL NOT NULL UNIQUE PRIMARY KEY,
         username TEXT NOT NULL, 
-        password_hash TEXT NOT NULL
-        refresh_token TEXT UNIQUE DEFAULT NULL
+        password_hash TEXT NOT NULL,
+        refresh_token TEXT UNIQUE DEFAULT NULL,
+        role TEXT NOT NULL DEFAULT 'user'
     )`);
 }
 
