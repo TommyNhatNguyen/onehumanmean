@@ -1,9 +1,9 @@
-require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const compression = require("compression");
 const RateLimit = require("express-rate-limit");
 const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const bodyParser = require("body-parser");
 const blogRouter = require("./routers/blogApis");
 const cors = require("cors");
