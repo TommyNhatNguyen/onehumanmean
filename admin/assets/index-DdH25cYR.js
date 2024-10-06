@@ -1,0 +1,1 @@
+import{u as s,a as e,r as o,t as n,P as r,s as i,j as u,O as c}from"./index-DQygTOy4.js";const f=()=>{const t=s(),{pathname:a}=e();return o.useEffect(()=>{n.get()||(t(r.ADMIN.LOGIN),i.warning("Please login to use dashboard"))},[a]),u.jsx(c,{})};export{f as default};
