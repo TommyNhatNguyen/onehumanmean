@@ -15,7 +15,8 @@ const projectRouter = require("./routers/projectsApis");
 const { roleValidation } = require("./middlewares/roleValidation");
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, "tempUploads");
+    // callback(null, "tempUploads");
+    callback(null, path.join(__dirname, "../tempUploads"));
   },
   filename: (req, file, callback) => {
     callback(null, Date.now() + "_" + file.originalname);
@@ -34,10 +35,17 @@ const limiter = RateLimit({
 app.set("trust proxy", 1);
 app.use(limiter);
 app.use(compression());
+app.all("/", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 app.use(cors());
+app.options("*", cors());
 app.use(morgan("combined"));
 app.use("/public", express.static(path.join(__dirname, "../public")));
 app.use("/tempUploads", express.static(path.join(__dirname, "../tempUploads")));
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // Use blogs routes
