@@ -1,3 +1,4 @@
+const path = require("path");
 const { Auth } = require("../models/authModel");
 const jwt = require("jsonwebtoken");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
