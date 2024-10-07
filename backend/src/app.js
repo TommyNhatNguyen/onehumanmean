@@ -1,7 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
 const compression = require("compression");
-const RateLimit = require("express-rate-limit");
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const bodyParser = require("body-parser");
@@ -15,7 +14,6 @@ const projectRouter = require("./routers/projectsApis");
 const { roleValidation } = require("./middlewares/roleValidation");
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    // callback(null, "tempUploads");
     callback(null, path.join(__dirname, "../tempUploads"));
   },
   filename: (req, file, callback) => {
@@ -28,12 +26,7 @@ const upload = multer({ storage: storage });
 const app = express();
 const PORT = process.env.PORT;
 // Middleware
-const limiter = RateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
-  max: 20,
-});
 app.set("trust proxy", 1);
-app.use(limiter);
 app.use(compression());
 app.all("/", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -45,7 +38,6 @@ app.options("*", cors());
 app.use(morgan("combined"));
 app.use("/public", express.static(path.join(__dirname, "../public")));
 app.use("/tempUploads", express.static(path.join(__dirname, "../tempUploads")));
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // Use blogs routes
